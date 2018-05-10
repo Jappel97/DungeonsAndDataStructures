@@ -56,7 +56,11 @@ public class NPC extends Thread
         Random rand = new Random();
         String randDir = list[rand.nextInt(list.length)];
         r.takeExit(randDir, this);
-        r.getPlayers().get(0).getContext().update(r);
+        Player p = r.getPlayers().get(0);
+        if(p.getCurrentRoom().name.equals(this.getCurrentRoom().name))
+        {
+            p.getContext().update(p.getCurrentRoom());
+        }
     }
 
     public void display()
