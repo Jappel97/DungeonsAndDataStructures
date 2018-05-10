@@ -37,4 +37,25 @@ public class Exit
         }
         return false;
     }
+
+    public boolean takeExit(NPC n)
+    {
+        //make the player move to the room they are NOT currently in.
+        Room r1 = Core.theDungeon.rooms.get(this.r1_index);
+        Room r2 = Core.theDungeon.rooms.get(this.r2_index);
+
+        if(n.getCurrentRoom() == r1)
+        {
+            r1.removeNPC(n);
+            r2.addNPC(n);
+            return true;
+        }
+        else if(n.getCurrentRoom() == r2)
+        {
+            r2.removeNPC(n);
+            r1.addNPC(n);
+            return true;
+        }
+        return false;
+    }
 }

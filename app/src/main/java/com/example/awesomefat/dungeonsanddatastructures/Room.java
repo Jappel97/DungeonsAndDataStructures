@@ -63,12 +63,25 @@ public class Room
     }
 
 
-    public boolean takeExit(String direction)
+    public boolean takeExit(String direction, Player actor)
     {
         Exit temp = this.exits.get(direction);
         if(temp != null)
         {
-            return temp.takeExit(this.players.get(0));
+            return temp.takeExit(actor);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public boolean takeExit(String direction, NPC actor)
+    {
+        Exit temp = this.exits.get(direction);
+        if(temp != null)
+        {
+            return temp.takeExit(actor);
         }
         else
         {

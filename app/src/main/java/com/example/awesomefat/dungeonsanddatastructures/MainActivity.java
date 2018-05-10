@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity
     public void onExitButtonClicked(View v)
     {
         Button b = (Button)v;
-        this.p.getCurrentRoom().takeExit(b.getText().toString().toLowerCase());
+        this.p.getCurrentRoom().takeExit(b.getText().toString().toLowerCase(), this.p);
         this.fillInterface(this.p.getCurrentRoom());
     }
 
@@ -159,5 +159,10 @@ public class MainActivity extends AppCompatActivity
         {
             this.westButton.setVisibility(View.VISIBLE);
         }
+    }
+
+    public void update(Room r)
+    {
+        this.fillInterface(r);
     }
 }

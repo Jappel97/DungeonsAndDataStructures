@@ -42,9 +42,21 @@ public class NPC extends Thread
                 //System.out.printf()
                 System.out.println(String.format("**** NPC %s says: %s", this.getName(), "Woot"));
                 //Log.v("***Says", "Woot");
+                this.sleep(r.nextInt(10000) + 5000);
+                this.wander();
             }
             catch(Exception e){}
         }
+    }
+
+    private void wander()
+    {
+        Room r = this.getCurrentRoom();
+        String[] list = (String[])r.exits.keySet().toArray();
+        Random rand = new Random();
+        String randDir = list[rand.nextInt(list.length)];
+        r.takeExit(randDir, this);
+        r.getPlayers().get(0).getContext().update(r);
     }
 
     public void display()
